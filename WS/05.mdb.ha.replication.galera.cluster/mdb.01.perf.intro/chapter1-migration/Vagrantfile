@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+ENV['LANG'] = 'C'
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+# Insert all your Vms with configs
+boxes = [
+    { :name => :mysqlserver },
+]
+
+$install = <<INSTALL
+aptitude update
+DEBIAN_FRONTEND=noninteractive aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install mysql-server
+INSTALL
+
+Vagrant::Config.run do |config|
+  # Default box OS
+  vm_default = proc do |boxcnf|
+    boxcnf.vm.box       = "deimosfr/debian-wheezy"
+  end
+
+  # For each VM, add a public and private card. Then install Ceph
+  boxes.each do |opts|
+    vm_default.call(config)
+    config.vm.define opts[:name] do |config|
+        config.vm.host_name = "%s.vm" % opts[:name].to_s
+        config.vm.provision "shell", inline: $install
+    end
+  end
+end
+

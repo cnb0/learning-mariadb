@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+#
+VAGRANTFILE_API_VERSION = "2"
+
+# Insert all your Vms with configs
+boxes = [
+    { :name => :mariadb },
+]
+
+$install = <<INSTALL
+aptitude update
+DEBIAN_FRONTEND=noninteractive aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install python-software-properties
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
+add-apt-repository 'deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.0/debian wheezy main'
+add-apt-repository 'deb http://repo.percona.com/apt wheezy main'
+echo 'Package: *
+Pin: release o=Percona Development Team
+Pin-Priority: 100' > /etc/apt/preferences.d/00percona.pref
+aptitude update
+DEBIAN_FRONTEND=noninteractive aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install mariadb-server percona-toolkit bzr
+INSTALL
+
+Vagrant::Config.run do |config|
+  # Default box OS
+  vm_default = proc do |boxcnf|
+    boxcnf.vm.box       = "deimosfr/debian-wheezy"
+  end
+
+  # For each VM, add a public and private card. Then install Ceph
+  boxes.each do |opts|
+    vm_default.call(config)
+    config.vm.define opts[:name] do |config|
+        config.vm.customize ["modifyvm", :id, "--cpus", 2]
+        config.vm.network   :bridged, :bridge => "eth0"
+        config.vm.host_name = "%s.vm" % opts[:name].to_s
+        config.vm.provision "shell", inline: $install
+    end
+  end
+end
+
