@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+#
+VAGRANTFILE_API_VERSION = "2"
+
+# Insert all your Vms with configs
+boxes = [
+    { :name => :mariadb },
+]
+
+$install = <<INSTALL
+aptitude update
+DEBIAN_FRONTEND=noninteractive aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install python-software-properties
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+add-apt-repository 'deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.0/debian wheezy main'
+aptitude update
+DEBIAN_FRONTEND=noninteractive aptitude -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install mariadb-server
+
+INSTALL
+
+Vagrant::Config.run do |config|
+  # Default box OS
+  vm_default = proc do |boxcnf|
+    boxcnf.vm.box       = "deimosfr/debian-wheezy"
+  end
+
+  # For each VM, add a public and private card. Then install Ceph
+  boxes.each do |opts|
+    vm_default.call(config)
+    config.vm.define opts[:name] do |config|
+        config.vm.customize ["modifyvm", :id, "--cpus", 4]
+        config.vm.network   :bridged, :bridge => "eth0"
+        config.vm.host_name = "%s.vm" % opts[:name].to_s
+        file_to_disk = 'ext4-journal_' + opts[:name].to_s + '.vdi'
+        config.vm.customize ['createhd', '--filename', file_to_disk, '--size', 250]
+        config.vm.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+        config.vm.provision "shell", inline: $install
+    end
+  end
+end
+
