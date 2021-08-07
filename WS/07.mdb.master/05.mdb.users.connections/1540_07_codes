@@ -1,0 +1,14 @@
+Before trying the code: (ignore errors, if any)
+
+SET ROLE NONE;
+DROP ROLE r;
+DROP ROLE r2;
+CREATE ROLE r;
+CREATE ROLE r2;
+GRANT r2 TO r;
+SET ROLE r;
+
+Code:
+
+SELECT * FROM information_schema.APPLICABLE_ROLES;
+SELECT * FROM information_schema.ENABLED_ROLES;

@@ -1,0 +1,17 @@
+1)
+
+Copy these lines in the configuration file:
+
+wsrep_provider=/usr/lib/galera/libgalera_smm.so 
+default_storage_engine=InnoDB 
+binlog_format=ROW 
+innodb_autoinc_lock_mode=2 
+innodb_doublewrite=0 
+innodb_support_xa=0 
+query_cache_size=0
+
+2)
+
+Bash:
+
+mysqld --wsrep-new-cluster

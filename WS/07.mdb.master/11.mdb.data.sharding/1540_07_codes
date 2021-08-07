@@ -1,0 +1,9 @@
+CREATE TABLE test.user ( 
+	id INTEGER UNSIGNED NOT NULL, 
+	username VARCHAR(50), 
+	password VARCHAR(50)
+) 
+	ENGINE = CONNECT
+	TABLE_TYPE = MYSQL
+	SRCDEF = 'SELECT * FROM db1.user WHERE id > 1000000'
+	CONNECTION = 'mysql://user1:pwd@remote_server/';

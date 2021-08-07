@@ -1,0 +1,1 @@
+CACHE INDEX myisam1, myisam2 IN hot_key_cache;

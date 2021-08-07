@@ -1,0 +1,4 @@
+SET @@global.hot_key_cache.key_cache_segments = 0;
+SELECT KEY_CACHE_NAME, SEGMENT_NUMBER, SEGMENTS, UNUSED_BLOCKS FROM information_schema.KEY_CACHES;
+SET @@global.hot_key_cache.key_cache_segments = 4;
+SELECT KEY_CACHE_NAME, SEGMENT_NUMBER, SEGMENTS, UNUSED_BLOCKS FROM information_schema.KEY_CACHES;

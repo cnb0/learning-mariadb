@@ -1,0 +1,2 @@
+SET @@session.join_buffer_size = 64000;
+SET @@global.join_buffer_size = 160000;

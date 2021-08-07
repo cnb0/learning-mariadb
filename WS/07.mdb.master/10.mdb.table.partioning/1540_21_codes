@@ -1,0 +1,17 @@
+Note:
+
+Replace /disk_x with a path which really exists on your computer
+and for which 'mysql' user has full rights.
+/tmp should be ok
+
+SQL:
+
+CREATE TABLE employee (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+)
+ENGINE = InnoDB
+PARTITION BY RANGE (id) (
+    PARTITION p0 VALUES LESS THAN (10000)
+	DATA DIRECTORY '/disk_x',
+    PARTITION p1 VALUES LESS THAN MAXVALUE
+);

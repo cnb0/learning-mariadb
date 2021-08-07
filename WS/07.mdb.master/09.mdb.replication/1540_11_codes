@@ -1,0 +1,7 @@
+Replace the filenames with the filenames of existing tables.
+Then:
+cd /usr/local/mysql/data/open_fatture
+
+Shell:
+
+md5sum --binary fornitori.frm fornitori.ibd

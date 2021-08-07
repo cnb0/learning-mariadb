@@ -1,0 +1,6 @@
+RESET QUERY CACHE;
+SHOW STATUS LIKE 'Qcache%';
+SELECT * FROM information_schema.QUERY_CACHE_INFO \G
+SELECT COUNT(*) FROM test.t;
+SHOW STATUS LIKE 'Qcache%';
+SELECT * FROM information_schema.QUERY_CACHE_INFO \G

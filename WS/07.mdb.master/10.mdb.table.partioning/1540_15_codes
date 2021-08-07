@@ -1,0 +1,9 @@
+Note:
+
+Execute this example after example 13.
+
+SQL:
+
+SELECT * 
+    FROM information_schema.INNODB_SYS_TABLESPACES 
+    WHERE NAME LIKE 'test/article#P#p1#%' \G

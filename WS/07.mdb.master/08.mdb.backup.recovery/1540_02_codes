@@ -1,0 +1,4 @@
+
+Execute this on the command line:
+
+mysql -e "SELECT * FROM information_schema.TABLES ORDER BY TABLE_SCHEMA, TABLE_NAME" > /tmp/tables.txt

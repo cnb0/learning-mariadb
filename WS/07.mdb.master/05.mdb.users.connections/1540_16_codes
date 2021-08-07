@@ -1,0 +1,14 @@
+Note:
+Replace "federico" with your Linux user.
+
+Before trying the code:
+
+INSTALL SONAME 'auth_socket';
+
+Code:
+
+CREATE USER federico IDENTIFIED VIA `mysql_native_password`;
+GRANT USAGE ON *.* TO federico IDENTIFIED VIA `unix_socket`;
+CREATE USER federico IDENTIFIED VIA `mysql_native_password`;
+GRANT USAGE ON *.* TO federico IDENTIFIED VIA `unix_socket`;
+

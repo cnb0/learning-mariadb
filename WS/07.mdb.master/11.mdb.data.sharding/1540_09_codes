@@ -1,0 +1,3 @@
+SELECT * FROM srv1_sql WHERE statement = '
+CREATE OR REPLACE TABLE db1.new_table (id INT) ENGINE = InnoDB 
+';

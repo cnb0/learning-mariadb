@@ -1,0 +1,12 @@
+Test this after example 16.
+Execute this example in the shell. Use the same system user you typed in example 16.
+
+Before trying the code:
+
+cd /usr/local/mysql
+
+Code:
+
+bin/mysql
+
+Note: login should success

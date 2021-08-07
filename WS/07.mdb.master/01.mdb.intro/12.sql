@@ -1,0 +1,2 @@
+SHUTDOWN;
+\q

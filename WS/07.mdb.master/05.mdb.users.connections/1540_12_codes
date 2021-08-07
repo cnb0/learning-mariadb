@@ -1,0 +1,8 @@
+Before trying the code:
+
+CREATE USER u1;
+
+Code:
+
+GRANT USAGE ON *.* TO u1 REQUIRE SSL;
+

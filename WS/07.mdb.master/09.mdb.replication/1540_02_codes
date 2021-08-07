@@ -1,0 +1,12 @@
+Start MariaDB with the following options in my.cnf:
+
+server-id=1
+log_bin="binlog" 
+binlog_format=STATEMENT
+
+
+Check that it starts, then try the following.
+
+
+SET @@server_id = 1; 
+SET @@binlog_format = 'MIXED';

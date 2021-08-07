@@ -1,0 +1,21 @@
+Code examples are executed on MariaDB 10.0.11 on Debian Linux 7.3.
+I installed MariaDB from generic Linux binaries as documented here:
+https://mariadb.com/kb/en/installing-mariadb-binary-tarballs/
+In the directory:
+/usr/local/mysql
+
+SQL examples in the book include:
+* MariaDB prompt and the statements to enter
+* MariaDB's output
+
+Each example file in this archive includes the SQL statements to be executed.
+
+Some of these examples require to be executed in 2 servers.
+Use 1 server as "local" and 1 server as "remote". When not specified, execute
+examples on Local - they could create objects that are needed in the following examples.
+
+If you don't have 2 physical machines, you can:
+* use a virtual machine (I use Virtual Box)
+* or install multiple MariaDB instances using SandBox: http://mysqlsandbox.net/
+
+I think that the testers know how to do this, but I can assist them if needed.

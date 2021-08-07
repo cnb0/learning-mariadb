@@ -1,0 +1,32 @@
+1)
+
+Create a file called notify.sh:
+
+#!/bin/sh -eu
+while [ $# -gt 0 ]
+do
+	case $1 in
+	--primary)
+		[ "$2" != "yes" ]
+		echo "Node1 is not in a primary cluster anymore!"> $EMAILMESSAGE
+		/bin/mail -s "Galera Problem" "some.valid@mail.com" < $EMAILMESSAGE
+		shift
+		;;
+	esac
+	shift
+done
+
+2)
+
+In Galera, execute:
+
+SET @@global.wsrep_notify_cmd = '/path/to/notify.sh';
+
+Adjust the path to notify.sh
+
+3)
+
+Testing the script itself is not easy. I suggest you simply call it from the command line,
+because this is enough to verify that the script is correct.
+The "clean" alternative is that you setup a cluster of 4 nodes, and then you disconnect
+2 of them using the killall Linux command.

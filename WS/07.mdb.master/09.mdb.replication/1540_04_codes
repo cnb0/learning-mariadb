@@ -1,0 +1,11 @@
+Start MariaDB with the following options in my.cnf:
+
+server-id=2
+
+and then:
+
+server-id=2
+log_bin="binlog"
+binlog_format=STATEMENT
+log_slave_updates=ON
+

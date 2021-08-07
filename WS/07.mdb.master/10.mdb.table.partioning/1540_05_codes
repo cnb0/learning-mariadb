@@ -1,0 +1,20 @@
+CREATE TABLE article (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	date DATE NOT NULL,
+	year CHAR(4) NOT NULL,
+	author VARCHAR(100),
+	language TINYINT UNSIGNED,
+	text TEXT,
+	PRIMARY KEY (id, language, year)
+)
+	ENGINE = InnoDB
+PARTITION BY RANGE COLUMNS (language, year) (
+	-- old english articles
+	PARTITION p0 VALUES LESS THAN (1, '2010'),
+	-- recent english articles
+	PARTITION p1 VALUES LESS THAN (1, '2020'),
+	-- old non-english articles
+	PARTITION p2 VALUES LESS THAN (100, '2010'),
+	-- recent non-english articles
+	PARTITION p3 VALUES LESS THAN (MAXVALUE, MAXVALUE)
+);

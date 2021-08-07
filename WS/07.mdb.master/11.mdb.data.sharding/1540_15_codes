@@ -1,0 +1,6 @@
+NOTE: the path of install_spider.sql may need to be adjusted. It is correct if you installed
+MariaDB in the way I suggested in the README file.
+
+INSTALL SONAME 'ha_spider';
+SOURCE /usr/local/mariadb/share/install_spider.sql;
+SHOW TABLES FROM mysql LIKE '%spider%';

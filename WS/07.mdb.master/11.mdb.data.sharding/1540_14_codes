@@ -1,0 +1,7 @@
+SELECT * FROM srv1_sql WHERE statement = ' 
+CREATE OR REPLACE TABLE a.output AS SELECT version(), @@global.version_comment 
+';
+CREATE OR REPLACE TABLE output 
+ENGINE = CONNECT, 
+TABLE_TYPE = MYSQL, 
+CONNECTION 'srv1/output';

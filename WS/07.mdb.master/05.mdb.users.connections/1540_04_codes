@@ -1,0 +1,13 @@
+Before trying the code: (ignore errors, if any)
+
+CREATE USER u1;
+CREATE USER u2;
+CREATE USER u3;
+DROP ROLE r;
+CREATE ROLE r;
+
+Code:
+
+GRANT r to u1, u2, u3;
+REVOKE r FROM u3;
+

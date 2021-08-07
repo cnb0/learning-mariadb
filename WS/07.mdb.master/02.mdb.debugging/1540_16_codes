@@ -1,0 +1,15 @@
+Before the code:
+to test this example, MariaDB must be started with these options:
+mysqld --general-log --log-output=table,file
+
+NOTE: you can only check that this query works. The results depend on what you did before it
+
+sql:
+SELECT user_host, event_time, argument
+	FROM mysql.general_log
+	WHERE
+		event_time >= NOW() - INTERVAL 1 WEEK
+		AND command_type = 'Query'
+		AND argument LIKE '%drop%table%orders\_history%'
+	ORDER BY event_time DESC
+	LIMIT 20;

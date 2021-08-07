@@ -1,0 +1,26 @@
+Console1:
+
+CREATE TABLE t (a INT UNIQUE) ENGINE = InnoDB;
+START TRANSACTION WITH CONSISTENT SNAPSHOT;
+INSERT INTO t VALUES (1);
+
+Console2:
+
+INSERT INTO t VALUES (2);
+SELECT * FROM t;
+
+Console1:
+
+COMMIT;
+SELECT * FROM t;
+
+Console2:
+
+SELECT * FROM t;
+
+Note: if you open another console, in any moment the following query should return an empty resultset:
+
+SELECT * FROM information_schema.INNODB_LOCKS;
+
+
+

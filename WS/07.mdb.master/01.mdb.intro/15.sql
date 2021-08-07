@@ -1,0 +1,1 @@
+SELECT @@global.storage_engine;

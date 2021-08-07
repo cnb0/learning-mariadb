@@ -1,0 +1,9 @@
+CREATE TABLE chars (
+	ch CHAR(1)
+)
+	ENGINE = MyISAM,
+	DATA DIRECTORY = '/tmp',
+	INDEX DIRECTORY = '/tmp';
+ALTER TABLE chars DATA DIRECTORY = '/any/other/path';
+
+NOTE: a warning is expected, see the book

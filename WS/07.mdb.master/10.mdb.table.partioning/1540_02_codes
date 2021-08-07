@@ -1,0 +1,13 @@
+CREATE TABLE employee (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(200) NOT NULL,
+	vat_id VARCHAR(15),
+	hire_date DATE NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE unq_email (email),
+	UNIQUE unq_vat (vat_id),
+	INDEX idx_hire (hire_date)
+)
+	ENGINE = InnoDB;

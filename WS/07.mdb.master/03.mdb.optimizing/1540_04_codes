@@ -1,0 +1,17 @@
+Note:
+
+The following example requires that there is a long-running query active in another session.
+In the book, the query is:
+SELECT a, b FROM t WHERE a = 1 ORDER BY a DESC
+If you don't want to populate a huge table, just execute something like SELECT SLEEP(300);
+which makes the connection just be active for 5 minutes.
+Replace 37 with the id of the session which is running the query
+(column ID in the output of SHOW PROCESSLIST).
+
+SQL:
+
+SHOW PROCESSLIST \G
+SHOW EXPLAIN FOR 37 \G
+SHOW WARNINGS;
+SHOW EXPLAIN FOR 37 \G
+

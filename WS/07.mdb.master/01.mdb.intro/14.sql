@@ -1,0 +1,1 @@
+SELECT ENGINE, SUPPORT FROM information_schema.ENGINES \G

@@ -1,0 +1,12 @@
+Before the code:
+
+SET @@global.innodb_strict_mode = ON;
+
+Code:
+
+CREATE TABLE comp_table (
+  id INT UNSIGNED NOT NULL PRIMARY KEY,
+  c1 VARCHAR(255),
+  c2 VARCHAR(255)
+) ENGINE = InnoDB,
+  ROW_FORMAT = COMPRESSED;

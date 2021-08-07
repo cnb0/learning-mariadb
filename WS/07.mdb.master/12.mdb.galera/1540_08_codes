@@ -1,0 +1,5 @@
+Bash:
+
+glbd --daemon --control 8765 --threads 4 3306 host1:4567:1 host2:4567:1 host3:4567:1
+
+Note: Adjust the node's hostname or IP.

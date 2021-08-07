@@ -1,0 +1,17 @@
+Console1:
+
+CREATE TABLE t (a INT PRIMARY KEY) ENGINE = InnoDB;
+INSERT INTO t VALUES (1), (3), (5);
+START TRANSACTION;
+SELECT * FROM t WHERE a >= 3;
+
+Console2:
+
+INSERT INTO t VALUES (4);
+
+Console1:
+
+SELECT * FROM t WHERE a >= 3;
+COMMIT;
+SELECT * FROM t WHERE a >= 3;
+

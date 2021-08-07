@@ -1,0 +1,7 @@
+CREATE TABLE test.user ( 
+	id INTEGER UNSIGNED NOT NULL, 
+	username VARCHAR(50), 
+	password VARCHAR(50)
+) 
+	ENGINE = SPIDER,
+	COMMENT = 'user "user1", password "pwd" host "remote_server", port "3306", database "db1", table "user"';

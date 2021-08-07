@@ -1,0 +1,3 @@
+CACHE INDEX myisam1 PARTITION (p0, p1) IN hot_key_cache;
+CACHE INDEX myisam1 PARTITION (p2) IN default;
+CACHE INDEX myisam2 PARTITION (ALL) IN default;

@@ -1,0 +1,33 @@
+Before the code:
+create 3 files named maria.log.01, maria.log.02, maria.log.03 in /usr/local/mysql/data
+execute: /usr/local/mysql/data
+
+NOTE:
+execute these command and check that they work, only where indicated a particular output is expected
+
+shell:
+ls | grep "maria\.log\."
+
+expected output:
+maria.log.01
+maria.log.02
+maria.log.03
+
+sql:
+SET GLOBAL general_log = 0;
+
+shell:
+rm maria.log.03
+mv maria.log.02 maria.log.03
+mv maria.log.01 maria.log.02
+
+sql:
+SET GLOBAL general_log = 1;
+
+shell:
+../bin/mysqladmin flush-logs -uroot -p
+
+expected output:
+maria.log.01
+maria.log.02
+maria.log.03

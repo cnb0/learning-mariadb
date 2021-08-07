@@ -1,0 +1,4 @@
+SELECT * FROM srv1_sql WHERE statement IN ( 
+'SET @@global.innodb_file_per_table = 1', 
+'SET @@global.innodb_strict_mode = 1' 
+); 

@@ -1,0 +1,7 @@
+CREATE TABLE new_table ( 
+id INT 
+) 
+ENGINE = CONNECT, 
+TABLE_TYPE = MYSQL, 
+CONNECTION 'srv1/new_table';
+SELECT COUNT(*) FROM new_table;

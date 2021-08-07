@@ -1,0 +1,11 @@
+This must be execute in the shell.
+Before doing this, SSL keys and certificates must be created.
+If the tester does not know how to do it, I suggest using the first example in this page:
+https://dev.mysql.com/doc/refman/5.6/en/creating-ssl-certs.html
+Use the same path and file names you see in the example (or change them).
+
+Code:
+
+cd /etc/ssl/mysql
+openssl verify -CAfile ca-cert.pem server-cert.pem client-cert.pem
+

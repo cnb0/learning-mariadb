@@ -1,0 +1,8 @@
+Before trying the code:
+
+CREATE USER u1;
+
+Code:
+
+GRANT USAGE ON TABLE *.* TO 'u1'@'%' WITH MAX_QUERIES_PER_HOUR 100 MAX_UPDATES_PER_HOUR 50;
+

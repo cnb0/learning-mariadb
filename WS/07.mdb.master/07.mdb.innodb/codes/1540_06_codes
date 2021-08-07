@@ -1,0 +1,7 @@
+Before the code:
+
+SET @@global.innodb_strict_mode = ON;
+
+Code:
+
+SHOW TABLES LIKE 'INNODB_CMP%';

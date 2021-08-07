@@ -1,0 +1,14 @@
+Before the code:
+
+CREATE DATABASE test_innodb2;
+USE test_innodb2;
+
+Code:
+
+SET @@global.innodb_file_per_table = ON;
+SET @@global.innodb_file_format = 'Antelope';
+CREATE TABLE um (col INT NOT NULL PRIMARY KEY) ENGINE = InnoDB;
+SET @@global.innodb_file_format = 'Barracuda';
+CREATE TABLE dois (col INT NOT NULL PRIMARY KEY) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
+SELECT NAME, FILE_FORMAT, ROW_FORMAT FROM information_schema.INNODB_SYS_TABLESPACES WHERE NAME LIKE 'test_innodb2/%';
+

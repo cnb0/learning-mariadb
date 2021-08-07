@@ -1,0 +1,6 @@
+SELECT * FROM srv1_sql WHERE statement IN ( 
+'Note','Warning', 'Error', 
+'DROP TABLE IF EXISTS t1', 
+'Note','Warning', 'Error', 
+'CREATE TABLE t1 (c INT) ENGINE = MySAM' 
+);

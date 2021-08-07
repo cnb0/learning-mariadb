@@ -1,0 +1,6 @@
+1) add these lines to /usr/local/mysql/my.cnf:
+hot_key_cache.key_buffer_size = 20480000
+key_buffer_size = 61440000
+cold_key_cache.key_buffer_size = 20480000
+
+2) check that the server starts

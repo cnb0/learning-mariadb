@@ -1,0 +1,17 @@
+NOTE:
+This example requires that a table called customers_non_comp exists.
+I used a big table. I don't really think that it is necessary to send that big file to testers.
+They can repeat this test after generating a customers_non_comp table (the structure/data do no matter),
+their work will be faster.
+But of course I could send the big file, if they think it is necessary...
+
+
+Code:
+
+CREATE TABLE test.customers_16 ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=16 SELECT * FROM test.customers_non_comp;
+CREATE TABLE test.customers_8 ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8 SELECT * FROM test.customers_non_comp;
+CREATE TABLE test.customers_4 ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=4 SELECT * FROM test.customers_non_comp;
+SELECT COUNT(*) FROM test.customers_16; 
+SELECT COUNT(*) FROM test.customers_8; 
+SELECT COUNT(*) FROM test.customers_4; 
+SELECT * FROM INNODB_CMPMEM_RESET;

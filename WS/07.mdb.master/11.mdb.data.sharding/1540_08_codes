@@ -1,0 +1,10 @@
+CREATE TABLE srv1_sql (
+	statement VARCHAR(128) NOT NULL FLAG = 0,
+	number INTEGER NOT NULL FLAG = 1,
+	message VARCHAR(255) FLAG = 2,
+	warnings INTEGER NOT NULL FLAG = 3
+)
+	ENGINE = CONNECT,
+	TABLE_TYPE = MYSQL,
+	CONNECTION 'srv1',
+	OPTION_LIST = 'Execsrc=1,Maxerr=10';

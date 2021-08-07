@@ -1,0 +1,3 @@
+SELECT * FROM srv1_sql WHERE statement = ' 
+SET @@global.performance_schema = 1 
+' \G

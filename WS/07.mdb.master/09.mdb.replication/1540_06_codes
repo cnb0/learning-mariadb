@@ -1,0 +1,19 @@
+The following example should not show errors, even if you have no master.
+
+SQL:
+
+CHANGE MASTER TO 
+MASTER_HOST = '162.100.100.100', 
+MASTER_USER = 'slave01', 
+MASTER_PASSWORD='somepwd', 
+MASTER_PORT = 5000, 
+MASTER_LOG_FILE = 'binlog.000031', 
+MASTER_LOG_POS = 3234; 
+START SLAVE;
+STOP SLAVE;
+CHANGE MASTER TO MASTER_PASSWORD = 'my_new_pwd';
+START SLAVE;
+SHOW SLAVE STATUS \G
+STOP SLAVE;
+RESET SLAVE;
+START SLAVE;

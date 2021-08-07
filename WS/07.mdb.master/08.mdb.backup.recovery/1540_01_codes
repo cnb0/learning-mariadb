@@ -1,0 +1,5 @@
+SELECT *
+	FROM information_schema.TABLES
+	ORDER BY TABLE_SCHEMA, TABLE_NAME
+	INTO OUTFILE '/tmp/tables.txt';
+

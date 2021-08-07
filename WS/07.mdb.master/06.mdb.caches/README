@@ -1,0 +1,43 @@
+Code examples are executed on MariaDB 10.0.9 on Debian Linux 7.3.
+I installed MariaDB from generic Linux binaries as documented here:
+https://mariadb.com/kb/en/installing-mariadb-binary-tarballs/
+In the directory:
+/usr/local/mysql
+
+Most examples require that the user is logged into MariaDB as root.
+
+SQL examples in the book include:
+* MariaDB prompt and the statements to enter
+* MariaDB's output
+
+Each example file in this archive includes the SQL statements to be executed.
+
+To reproduce SQL statements, just start the "mysql" command-line client and paste the statements.
+(even when there is more than 1 statements, just paste and hit enter)
+
+In some cases, something must be done to prepare the code example (create a table, etc).
+In that case, in the file you will find "Before trying the code:"
+
+NOTE: execute the tests in their order. Some tests require that
+another test has been executed.
+
+BEFORE trying the tests, execute this (only once):
+
+USE test;
+DROP TABLE IF EXISTS myisam1, myisam2;
+CREATE TABLE `myisam1` (
+  `a` int(11) NOT NULL,
+  `b2` int(11) DEFAULT NULL,
+  PRIMARY KEY (`a`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+/*!50100 PARTITION BY KEY (a)
+PARTITIONS 3 */;
+CREATE TABLE `myisam2` (
+  `a` int(11) NOT NULL,
+  `b` int(11) DEFAULT NULL,
+  PRIMARY KEY (`a`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+/*!50100 PARTITION BY KEY (a)
+PARTITIONS 3 */;
+
+

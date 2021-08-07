@@ -1,0 +1,18 @@
+Before trying the example:
+
+\W
+
+SQL:
+
+CREATE TABLE article (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	date DATE NOT NULL,
+	author VARCHAR(100),
+	language TINYINT UNSIGNED,
+	text TEXT,
+	PRIMARY KEY (id, date)
+)
+	ENGINE = InnoDB
+PARTITION BY HASH(YEAR(date))
+PARTITIONS 8;
+ALTER TABLE article ADD PARTITION PARTITIONS 2;

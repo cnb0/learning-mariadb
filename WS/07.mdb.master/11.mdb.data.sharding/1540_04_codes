@@ -1,0 +1,8 @@
+CREATE TABLE test.user ( 
+	id INTEGER UNSIGNED NOT NULL, 
+	username VARCHAR(50), 
+	password VARCHAR(50)
+) 
+	ENGINE = CONNECT
+	TABLE_TYPE = MYSQL
+	CONNECTION = 'mysql://user1:pwd@remote_server/db1/user';

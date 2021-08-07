@@ -1,0 +1,5 @@
+NOTE: This example requires RedHat or Fedora.
+
+Bash:
+
+setenforce 0

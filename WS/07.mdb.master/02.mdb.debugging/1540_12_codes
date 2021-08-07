@@ -1,0 +1,5 @@
+Before the example:
+cd /usr/local/mysql/bin
+
+shell:
+mysqld_safe --syslog --syslog-tag=serv1

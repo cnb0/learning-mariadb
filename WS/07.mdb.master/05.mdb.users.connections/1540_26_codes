@@ -1,0 +1,13 @@
+This example must be executed on 2 different mysql command-line clients.
+
+Console1:
+
+DO SLEEP(2000);
+
+Console2:
+
+SHOW PROCESSLIST;
+KILL QUERY 9;
+
+NOTE: The output of SHOW PROCESSLIST is not expected to be IDENTICAL to the one I've written
+in the book, but one line should be very similar. Replace "9" with the ID value of that line.

@@ -1,0 +1,24 @@
+SQL:
+
+CREATE TABLE `user` ( 
+  `email` char(100) NOT NULL, 
+  `username` char(20) NOT NULL, 
+  `password_md5` binary(32) NOT NULL, 
+  `first_name` char(30) NOT NULL, 
+  `last_name` char(30) NOT NULL, 
+  `birth_date` date DEFAULT NULL, 
+  `id` smallint(6) NOT NULL AUTO_INCREMENT, 
+  `sex` char(1) NOT NULL, 
+  PRIMARY KEY (`id`), 
+  UNIQUE KEY `email` (`email`), 
+  UNIQUE KEY `username` (`username`), 
+  KEY `idx_birth` (`birth_date`), 
+  KEY `idx_birth_sex` (`birth_date`,`sex`) 
+) ENGINE=InnoDB;
+
+EXPLAIN SELECT birth_date, sex, COUNT(*) FROM user GROUP BY birth_date, sex\G
+EXPLAIN (SELECT first_name, last_name, birth_date FROM user WHERE last_name LIKE 'A%') UNION (SELECT first_name, last_name, birth_date FROM user WHERE last_name LIKE 'C%'); 
+EXPLAIN SELECT first_name, last_name, birth_date FROM user WHERE birth_date BETWEEN '1994-01-01' AND '1994-12-31' \G
+EXPLAIN SELECT first_name, last_name, birth_date FROM user WHERE last_name LIKE 'B%' \G
+
+

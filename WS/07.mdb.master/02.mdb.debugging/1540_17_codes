@@ -1,0 +1,13 @@
+Before the code:
+to test this example, MariaDB must be started with these options:
+mysqld --general-log --log-output=table,file
+
+NOTE:
+you can only check that this query works. The results depend on what you did before it
+
+sql:
+SELECT event_time, command_type, argument
+	FROM mysql.general_log
+	WHERE thread_id = 100
+	AND event_time > NOW() - INTERVAL 1 DAY
+	ORDER BY event_time \G

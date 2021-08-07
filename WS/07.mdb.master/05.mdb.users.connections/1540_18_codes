@@ -1,0 +1,12 @@
+Test this after example 16.
+Execute this example in the shell. Login as root.
+
+Before trying the code:
+
+cd /usr/local/mysql
+
+Code:
+
+bin/mysql
+
+Note: a 1045 error is expected!

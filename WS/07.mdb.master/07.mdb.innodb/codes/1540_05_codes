@@ -1,0 +1,12 @@
+Before the code:
+
+SET @@global.innodb_strict_mode = ON;
+
+Code:
+
+CREATE TABLE non_comp ( 
+   id INT UNSIGNED NOT NULL PRIMARY KEY, 
+   c1 VARCHAR(255), 
+   c2 VARCHAR(255) 
+) ENGINE = InnoDB; 
+ALTER TABLE non_comp KEY_BLOCK_SIZE = 8;

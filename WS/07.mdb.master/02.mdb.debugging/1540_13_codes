@@ -1,0 +1,6 @@
+Add these lines to /usr/local/mysql/my.cnf (at the beginning or at the end, not in the middle):
+[mysqld_safe]
+syslog
+syslog_tag=maria10
+
+Just check that the server starts

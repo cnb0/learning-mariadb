@@ -1,0 +1,9 @@
+Before trying the code:
+
+CREATE USER u1;
+
+Code:
+
+GRANT USAGE ON *.* TO u1@localhost;
+GRANT USAGE ON *.* TO 'u1'@'%' REQUIRE ISSUER '/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Norman Bates/emailAddress=n.bates@example.net' AND CIPHER 'RSA-SHA';
+

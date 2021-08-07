@@ -1,0 +1,19 @@
+Before the test:
+
+CREATE DATABASE test_innodb;
+USE test_innodb;
+
+Code:
+
+CREATE TABLE haon (col INT NOT NULL PRIMARY KEY) ENGINE = InnoDB;
+SET @@global.innodb_file_per_table = ON;
+CREATE TABLE do (col INT NOT NULL PRIMARY KEY) ENGINE = InnoDB;
+SET @@global.innodb_file_per_table = OFF;
+CREATE TABLE tri (col INT NOT NULL PRIMARY KEY) ENGINE = InnoDB;
+
+On the shell:
+
+cd /usr/local/mysql
+ls data/ibdata* -1
+ls data/test_innodb -1
+

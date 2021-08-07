@@ -1,0 +1,6 @@
+shell:
+
+pt-query-digest /usr/local/mysql/data/slow_query
+
+Check that the output is similar to the one shown in the chapter.
+

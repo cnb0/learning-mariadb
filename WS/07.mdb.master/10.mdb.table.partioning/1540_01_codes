@@ -1,0 +1,3 @@
+SELECT * FROM information_schema.PLUGINS WHERE PLUGIN_NAME = 'partition'\G
+
+

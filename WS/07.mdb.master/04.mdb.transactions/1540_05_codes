@@ -1,0 +1,2 @@
+SET @@tx_isolation = 'repeatable-read';
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;

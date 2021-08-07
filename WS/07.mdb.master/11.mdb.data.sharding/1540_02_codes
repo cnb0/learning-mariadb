@@ -1,0 +1,15 @@
+Remote server:
+
+CREATE TABLE db1.user ( 
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 
+    username VARCHAR(50), 
+    password VARCHAR(50), 
+    PRIMARY KEY (id) 
+    ) 
+    ENGINE = InnoDB;
+
+Local server:
+
+CREATE TABLE test.user_fed 
+    ENGINE = FEDERATED 
+    CONNECTION = 'mysql://user1:pwd@remote_server/db1/user';

@@ -1,0 +1,7 @@
+This test is very similar to the previous one, but it must be run on Windows (I tried it on 7, but any version should be ok)
+Create the files maria.log.01, maria.log.02, maria.log.03 in any directory, open the command prompt, move to the directory, and just check that the following commands work:
+
+del maria.log.03
+rename maria.log.02 maria.log.03 
+rename maria.log.01 maria.log.02 
+dir maria.log.*

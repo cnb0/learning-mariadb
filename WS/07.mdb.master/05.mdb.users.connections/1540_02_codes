@@ -1,0 +1,8 @@
+SELECT CURRENT_USER(), USER();
+
+Note:
+This is not expected to return the same results I've written in the book,
+unless the computer is called "mandarino" and the proper accounts are created...
+I suggest that the testers just understands the meaning of these functions
+and check that the query shows what I wanted to show, to make life easier.
+

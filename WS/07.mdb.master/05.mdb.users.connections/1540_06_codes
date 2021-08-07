@@ -1,0 +1,8 @@
+Note: execute this afer the previous example.
+
+SET ROLE r;
+SELECT CURRENT_ROLE();
+SET ROLE NONE;
+SELECT CURRENT_ROLE();
+
+

@@ -1,0 +1,15 @@
+CREATE TABLE article (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	date DATE NOT NULL,
+	author VARCHAR(100),
+	language TINYINT UNSIGNED,
+	text TEXT,
+	PRIMARY KEY (id, language)
+)
+	ENGINE = InnoDB
+PARTITION BY LIST (language) (
+	PARTITION p0 VALUES IN ('en'),
+	PARTITION p1 VALUES IN ('fr', 'de'),
+	PARTITION p2 VALUES IN ('es', 'it', 'ir', 'is', 'nl', 'ru', 'ro', 'sr'),
+	PARTITION px VALUES IN (NULL)
+);

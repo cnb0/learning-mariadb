@@ -1,0 +1,9 @@
+CREATE TEMPORARY TABLE output ( 
+    v VARCHAR(255) 
+    ) ENGINE = InnoDB; 
+SELECT spider_direct_sql( 
+    'SELECT VERSION() AS v', 
+    'output', 
+    'user "user1", password "pwd", host "remote_server", port "3306"'
+    ) AS v;
+SELECT * FROM output;

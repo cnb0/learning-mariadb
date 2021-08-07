@@ -1,0 +1,21 @@
+Code examples are executed on MariaDB 10.0.6 on Debian Linux 7.3.
+I installed MariaDB from generic Linux binaries as documented here:
+https://mariadb.com/kb/en/installing-mariadb-binary-tarballs/
+
+My code examples in the book include:
+* MariaDB prompt and the statements to enter
+* MariaDB's output
+
+Each example file in this archive only includes the SQL statements to be executed.
+
+To reproduce them, just start the "mysql" command-line client and paste the statements.
+(even when there is more than 1 statements, just paste and hit enter)
+
+In some cases, something must be done to prepare the code example (create a table, etc).
+In that case, in the file you will find:
+* "Before trying the code:"
+* "Code:"
+
+Note that in some cases, the book reports an example output, but it is impossible to
+obtain exactly the same output when executing it (for example, when threads information is showed).
+

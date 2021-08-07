@@ -1,0 +1,16 @@
+before trying the example:
+
+CREATE OR REPLACE TABLE t (
+	col1 VARCHAR(255),
+	col2 VARCHAR(255),
+	INDEX idx (col1, col2)
+) ENGINE = InnoDB;
+
+just check that the following queries work...
+
+SELECT * FROM t WHERE col1 LIKE 'begin%';
+SELECT * FROM t WHERE col1 LIKE '%end';
+SELECT * FROM t WHERE col1 = 10;
+SELECT * FROM t WHERE col2 = 10;
+SELECT * FROM t ORDER BY col1, col2;
+SELECT * FROM t ORDER BY col2, col1;

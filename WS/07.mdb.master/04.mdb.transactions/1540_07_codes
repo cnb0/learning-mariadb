@@ -1,0 +1,25 @@
+Console1:
+
+CREATE TABLE t (a INT) ENGINE = Aria;
+START TRANSACTION;
+INSERT INTO t VALUES (1);
+
+Console2:
+
+RENAME TABLE t TO tab;
+
+Console3:
+
+SELECT * FROM information_schema.METADATA_LOCK_INFO \G
+
+Note: the output should be identical to the output that appears in the book,
+but the THREAD_ID values will probably be different, and i think that the
+order of results may vary too. It's ok: the order has no meaning for the user.
+
+Console1:
+
+SELECT * FROM t;
+COMMIT;
+SELECT * FROM t;
+
+Note: an error is expected after last query!

@@ -1,0 +1,27 @@
+CREATE SERVER srv1
+	FOREIGN DATA WRAPPER `mysql`
+	OPTIONS (
+		USER 'root',
+		PASSWORD 'root',
+		HOST '127.0.0.1',
+		DATABASE 'remote_server'
+	);
+CREATE TABLE test.t
+	ENGINE = FEDERATED
+	CONNECTION 'srv1/user';
+SELECT * FROM mysql.servers WHERE Server_name = 'srv1' \G
+DROP SERVER IF EXISTS srv1;
+
+
+NOTE:
+
+Re-execute
+CREATE SERVER srv1
+	FOREIGN DATA WRAPPER `mysql`
+	OPTIONS (
+		USER 'root',
+		PASSWORD 'root',
+		HOST '127.0.0.1',
+		DATABASE 'remote_server'
+	);
+because srv1 is needed in some of the following examples.

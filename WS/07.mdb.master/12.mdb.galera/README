@@ -1,0 +1,5 @@
+Code examples are executed on MariaDB Galera Cluster 10.0.10 on Debian Linux 7.3.
+I installed MariaDB Galera Cluster from the Debian packages:
+https://downloads.mariadb.org/mariadb-galera/10.0.10/
+Galera Load Balancer 1.0.0 is also needed:
+http://www.fromdual.com/download

@@ -1,0 +1,11 @@
+Before trying the code: (ignore errors, if any)
+
+CREATE USER u1;
+DROP ROLE r;
+
+Code:
+
+CREATE ROLE r WITH ADMIN u1;
+DROP ROLE r;
+
+

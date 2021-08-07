@@ -1,0 +1,15 @@
+
+Before trying the code:
+
+CREATE TABLE `customer` ( 
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `hire_date` date NOT NULL, 
+  `first_name` varchar(50) DEFAULT NULL, 
+  `last_name` varchar(50) DEFAULT NULL, 
+  PRIMARY KEY (`id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 
+
+Code:
+
+SHOW CREATE TABLE customer \G
+SHOW CREATE DATABASE test;

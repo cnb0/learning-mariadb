@@ -1,0 +1,11 @@
+Note:
+
+Execute this example after example 13.
+
+SQL:
+
+SELECT 
+    CONCAT(PARTITION_NAME, '.', SUBPARTITION_NAME) AS SUBPARTITION_NAME, 
+    SUBPARTITION_ORDINAL_POSITION 
+    FROM information_schema.PARTITIONS 
+    WHERE TABLE_SCHEMA = 'test' AND TABLE_NAME = 'article';

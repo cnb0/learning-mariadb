@@ -1,0 +1,4 @@
+SELECT *
+	FROM performance_schema.events_statements_current s
+	LEFT JOIN performance_schema.threads t
+	ON s.THREAD_ID = t.THREAD_ID;

@@ -1,0 +1,9 @@
+NOTE: This example requires Ubuntu Linux with AppArmor enabled
+(which should be the default)
+Probably Mint is ok too, Debian is NOT.
+
+Bash:
+
+cd /etc/apparmor.d/disable/
+ln -s /etc/apparmor.d/usr.sbin.mysqld
+service apparmor restart

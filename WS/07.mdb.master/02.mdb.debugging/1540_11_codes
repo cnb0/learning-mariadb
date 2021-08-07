@@ -1,0 +1,10 @@
+Before the code:
+* add this line to /usr/local/mysql/my.cnf:
+base_dir=/usr/local/mysql
+* try to start MariaDB (it will fail, but it's ok)
+
+shell:
+sudo tail -20 /usr/local/mysql/data/this.err | grep ERROR
+
+After the code:
+Drop the line you added to /usr/local/mysql/my.cnf, or the server will not start again.

@@ -1,0 +1,14 @@
+before trying the example:
+
+CREATE OR REPLACE TABLE t (
+	a INT,
+	b INT,
+	INDEX idx_a (a)
+) ENGINE = InnoDB;
+
+sql:
+
+EXPLAIN EXTENDED SELECT a, b FROM t WHERE a = 1 ORDER BY a DESC \G
+SHOW WARNINGS \G
+
+

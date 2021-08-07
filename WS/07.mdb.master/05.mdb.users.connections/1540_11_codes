@@ -1,0 +1,12 @@
+Test this after example 10
+
+Close the client.
+Add the following lines to the usr/local/mysql/data/my.cnf file, in the [client] section:
+
+# SSL 
+ssl-cert=/etc/mysql-ssl/client-cert.pem 
+ssl-key=/etc/mysql-ssl/client-key.pem
+
+...and check that the client starts again.
+After testing this example, erase these lines and restart the client.
+
