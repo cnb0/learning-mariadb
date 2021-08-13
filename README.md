@@ -1,7 +1,7 @@
 # learning-mariadb
  
  - [myCLI](https://www.mycli.net/)
- - 
+ 
 ### Course Outline
 
 - Introduction
