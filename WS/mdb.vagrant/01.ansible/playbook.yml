@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes 
+  vars:
+    dbname: 'dbname'
+    dbuser: 'dbuser'
+    dbpass: 'dbpass'
+
+  tasks:
+
+    - name: Install common properties
+      apt: 'name=software-properties-common update_cache=yes force=yes'
+
+    - name: add MariaDB PPA key
+      apt_key: 'keyserver=hkp://keyserver.ubuntu.com:80 id=0xcbcb082a1bb943db'
+
+    - name: Add MariaDB PPA
+      apt_repository: repo='deb http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.1/ubuntu trusty main' state=present
+
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+
+
+    - name: Install MariaDB
+      apt: 'name=mariadb-server update_cache=yes force=yes'

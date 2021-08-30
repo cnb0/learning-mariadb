@@ -1,0 +1,52 @@
+#!/bin/bash
+
+function show_usage () {
+  echo 
+  echo "Usage: db-restart <galera config file>"
+  echo 
+  echo "Eg: db-restart tier1-galera.conf"
+  echo 
+}
+
+source ./conf $1
+if [ $? -ne 0 ]; then
+  show_usage
+  exit 1
+fi
+if [ ! -f $WEB_CONFIG ]; then 
+  show_usage
+  exit 1
+fi
+if [ -z $STACK_NAME ]; then 
+  show_usage
+  exit 1
+fi
+
+echo
+echo "Exposing 3306 on the galera haproxy for data load"
+./docker-env service update --detach --publish-add 3306:3306 ${STACK_NAME}_galera-haproxy
+sleep 10s
+echo -n "Waiting for galera haproxy to restart with 3306 open..."
+while [ "`./docker-env service ls | grep ${STACK_NAME}_galera-haproxy | grep '1/1' | wc -l | xargs`" != "1" ]
+do
+  echo -n "."
+  sleep 2s
+done
+echo
+sleep 15s
+
+DB_HOST=`echo $DOCKER_HOST | sed 's/:.*//'`
+
+echo
+echo "Galera WSREP Cluster Info:"
+echo "--------------------------"
+mysql -h $DB_HOST  -u root --password=`cat .secrets/mysql_root_password` < util/cluster-info.sql
+if [ $? -ne 0 ]; then
+  echo
+  echo "Failure deploying mariadb galera!"
+  echo
+else
+  echo
+  echo "MariaDB Galera Cluster: ${STACK_NAME} Successfully opened for data loading!"
+  echo
+fi

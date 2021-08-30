@@ -1,0 +1,59 @@
+#!/bin/bash
+
+STACK_VERSION=$1
+GALERA_STACK_HOME=/home/admin/Workspace/mariadb-galera-docker
+DRUPAL_STACK_HOME=/home/admin/Workspace/drupal7-docker
+START_DIR=$PWD
+
+GALERA_DEPLOY_FOLDER=ids/deploys/galera
+DRUPAL_DEPLOY_FOLDER=ids/deploys/drupal
+
+if [ -z $STACK_VERSION ]; then
+  STACK_VERSION=demo
+fi
+
+cd $GALERA_STACK_HOME/swarm
+
+MYSQL_PWD=`cat .secrets/mysql_root_password`
+
+bash deploy $GALERA_DEPLOY_FOLDER/galera-swarm-$STACK_VERSION.yml
+if [ $? -ne 0 ]; then
+  echo "Failed to deploy galera stack"
+  cd $START_DIR
+  exit 1
+fi
+
+bash db-open $GALERA_DEPLOY_FOLDER/galera-swarm-$STACK_VERSION.yml
+if [ $? -ne 0 ]; then
+  echo "Failed to open galera mariadb port"
+  cd $START_DIR
+  exit 1
+fi
+
+cd $DRUPAL_STACK_HOME/swarm
+
+bash load-testdb $DRUPAL_DEPLOY_FOLDER/drupal-swarm-$STACK_VERSION.yml $MYSQL_PWD
+if [ $? -ne 0 ]; then
+  echo "Failed to load the drupaldb test data"
+  cd $START_DIR
+  exit 1
+fi
+
+bash deploy $DRUPAL_DEPLOY_FOLDER/drupal-swarm-$STACK_VERSION.yml
+if [ $? -ne 0 ]; then
+  echo "Failed to deploy the drupal7 stack"
+  cd $START_DIR
+  exit 1
+fi
+
+cd $GALERA_STACK_HOME/swarm
+
+bash db-close $GALERA_DEPLOY_FOLDER/galera-swarm-$STACK_VERSION.yml
+if [ $? -ne 0 ]; then
+  echo "Failed to close the mariadb galera portt"
+  cd $START_DIR
+  exit 1
+fi
+
+cd $START_DIR
+echo "Full Stack Deployed!"
