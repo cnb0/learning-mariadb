@@ -1,5 +1,114 @@
+
+
 SELECT *
 	FROM information_schema.TABLES
 	ORDER BY TABLE_SCHEMA, TABLE_NAME
 	INTO OUTFILE '/tmp/tables.txt';
 
+
+Execute this on the command line:
+$ mysql -e "SELECT * FROM information_schema.TABLES ORDER BY TABLE_SCHEMA, TABLE_NAME" > /tmp/tables.txt
+
+------------------------------------------------------------
+
+Before trying the code:
+
+CREATE TABLE `customer` ( 
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `hire_date` date NOT NULL, 
+  `first_name` varchar(50) DEFAULT NULL, 
+  `last_name` varchar(50) DEFAULT NULL, 
+  PRIMARY KEY (`id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 
+
+Code:
+
+SHOW CREATE TABLE customer \G
+SHOW CREATE DATABASE test;
+
+
+------------------------------------------------------------
+
+SQL:
+
+CREATE TABLE customer ( 
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    hire_date DATE NOT NULL, 
+    first_name VARCHAR(50), 
+    last_name VARCHAR(50) 
+    ) 
+    ENGINE = InnoDB, 
+    CHARACTER SET = 'utf8';
+INSERT INTO customer (hire_date, first_name, last_name) VALUES 
+    ('2011-05-07', 'David', 'Coverdale'), 
+    ('2010-01-20', 'Ritchie', 'Blackmore'), 
+    ('2012-11-15', 'Ian', 'Paice'), 
+    ('2011-06-01', 'Jon', 'Lord'), 
+    ('2010-02-28', 'Roger', 'Glover');
+
+Bash:
+
+mysqldump -uroot -proot test customer --tab=/tmp --fields-terminated-by=, --fields-enclosed-by="'" --fields-escaped-by=/
+tail --lines 3 /tmp/customer.txt
+
+SQL:
+
+SELECT * 
+    FROM customer 
+    INTO OUTFILE '/tmp/customer.2.txt' 
+    FIELDS 
+    TERMINATED BY ',' 
+    ENCLOSED BY '\'' 
+    ESCAPED BY ',';
+
+Bash:
+
+md5sum /tmp/customer.txt 
+md5sum /tmp/customer.2.txt
+
+SQL:
+
+TRUNCATE TABLE customer;
+
+Bash:
+
+bin/mysqlimport -uroot -proot --fields-terminated-by=, --fields-enclosed-by="'" --fields-escaped-by=/ test /tmp/customer.txt
+
+SQL:
+
+LOAD DATA INFILE '/tmp/customer.txt' 
+    INTO TABLE test.customer 
+    FIELDS 
+    TERMINATED BY ',' 
+    ENCLOSED BY '\'' 
+    ESCAPED BY ',';
+
+------------------------------------------------------------
+
+CREATE TABLE customer_bkp ENGINE = CSV SELECT * FROM customer;
+
+NOTE:
+
+this should return an error,  
+------------------------------------------------------------
+
+INSTALL SONAME 'ha_connect';
+CREATE TABLE customer_bkp 
+    ENGINE = CONNECT 
+    TABLE_TYPE = CSV 
+    FILE_NAME = '/tmp/customer.csv' 
+    HUGE = 0 
+    COMPRESS = 1 
+    READONLY = 1 
+    DATA_CHARSET = 'utf8' 
+    SEP_CHAR = ',' 
+    ENDING = 1 
+    QUOTED = 1 
+    QCHAR = '"' 
+    HEADER = 1 
+    SELECT * FROM customer;
+
+
+------------------------------------------------------------
+SHOW MASTER STATUS;
+SHOW BINARY LOGS;
