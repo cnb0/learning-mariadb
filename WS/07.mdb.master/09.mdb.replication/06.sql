@@ -1,6 +1,6 @@
 The following example should not show errors, even if you have no master.
 
-SQL:
+ 
 
 CHANGE MASTER TO 
 MASTER_HOST = '162.100.100.100', 
