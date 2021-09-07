@@ -10,8 +10,8 @@ Replace 37 with the id of the session which is running the query
 
 SQL:
 
-SHOW PROCESSLIST \G
-SHOW EXPLAIN FOR 37 \G
+SHOW PROCESSLIST ;
+SHOW EXPLAIN FOR 37 ;
 SHOW WARNINGS;
-SHOW EXPLAIN FOR 37 \G
+SHOW EXPLAIN FOR 37;  
 
