@@ -1,3 +1,3 @@
-SQL:
+ 
 
 SHOW BINARY LOGS;
