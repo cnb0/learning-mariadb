@@ -2,4 +2,4 @@ CREATE TABLE customer_bkp ENGINE = CSV SELECT * FROM customer;
 
 NOTE:
 
-this should return an error, as showed in the book
+this should return an error,  
