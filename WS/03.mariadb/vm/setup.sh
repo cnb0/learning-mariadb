@@ -4,7 +4,7 @@ sudo cp /vagrant/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
 sudo dnf update -y
 sudo dnf upgrade -y
 sudo dnf install -y python3-PyMySQL vim tmux
-sudo dnf install -y MariaDB-server MariaDB-backup
+sudo dnf install -y mariadb-server mariadb-backup
 sudo systemctl enable mariadb
 sudo systemctl start mariadb
 
