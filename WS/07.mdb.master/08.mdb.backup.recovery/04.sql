@@ -1,5 +1,5 @@
 
-SQL:
+ 
 
 CREATE TABLE customer ( 
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
