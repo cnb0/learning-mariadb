@@ -2,6 +2,7 @@
 
 ## [ MariaDB HA on K8s](https://portworx.com/run-ha-mariadb-google-kubernetes-engine/)
 ## [MariaDB Galera](https://www.digitalocean.com/community/tutorials/how-to-configure-a-galera-cluster-with-mariadb-on-centos-7-servers)
+## [centos7 galera](https://github.com/marcindulak/vagrant-mariadb-galera-tutorial-centos7)
 
                  
 1. MariaDB Replication
