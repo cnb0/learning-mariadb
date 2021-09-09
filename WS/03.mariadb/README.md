@@ -12,6 +12,7 @@ Run the VM:
 
     $ cd path/to/MariaDBWorkshop/vm
     $ vagrant up
+    $ vagrant status
 
 Login to the VM:
 
